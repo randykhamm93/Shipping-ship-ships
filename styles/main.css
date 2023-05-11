@@ -1,0 +1,25 @@
+body {
+  background-color:dodgerblue;
+}
+
+li {
+  background-color: white;
+}
+
+.dock-list-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1);
+  grid-gap: 8px;
+}
+
+.shipping-list-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1);
+  grid-gap: 8px;
+}
+
+.hauler-list-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1);
+  grid-gap: 8px;
+}
