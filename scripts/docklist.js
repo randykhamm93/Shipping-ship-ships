@@ -11,6 +11,7 @@ export const DockList = () => {
     docksHTML += `<li
         data-type="dock"
         data-dockid="${dock.id}"
+        data-dockname="${dock.location}"
         >${dock.location} can hold ${dock.volume} million tons of cargo</li>`
   }
 
@@ -22,31 +23,32 @@ export const DockList = () => {
 document.addEventListener(
   "click",
   (clickEvent) => {
-    const itemClicked = clickEvent.target;
+    const itemClicked = clickEvent.target
     // Was a dock list item clicked?
     if (itemClicked.dataset.type === "dock") {
       // Get the dockId value of each hauler
-      const dockId = itemClicked.dataset.dockid;
+      const dockId = itemClicked.dataset.dockid
+      const dockName = itemClicked.dataset.dockname
       // Define an array to store the names of ships at the dock
-      const shipsAtDock = [];
+      let shipsAtDock = []
       // Get the haulerShips
-      const haulerShips = getHaulingShips();
+      const haulerShips = getHaulingShips()
       // For of loop that iterates the hauling ships
       for (const ship of haulerShips) {
         // If else statement to check if haulerDockId === dock id
         if (parseInt(dockId) === ship.dockId) {
           // Add the ship's name to the array
-          shipsAtDock.push(ship.name);
+          shipsAtDock.push(ship.name)
         }
       }
       // Create window alert based on the number of ships at the dock
       if (shipsAtDock.length === 0) {
-        window.alert(`The ${itemClicked.dataset.type} dock is currently unloading nothing`);
+        window.alert(`The ${dockName} dock is currently unloading nothing`)
       } else if (shipsAtDock.length === 1) {
-        window.alert(`The ${itemClicked.dataset.type} dock is currently unloading ${shipsAtDock[0]}`)
+        window.alert(`The ${dockName} dock is currently unloading ${shipsAtDock[0]}`)
       } else {
         const shipNames = shipsAtDock.join(", ");
-        window.alert(`The ${itemClicked.dataset.type} dock is currently unloading ${shipNames}`);
+        window.alert(`The ${dockName} dock is currently unloading ${shipNames}`)
       }
     }
   }
